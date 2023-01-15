@@ -30,6 +30,9 @@ class Url extends Tag
     /** @var array */
     public $alternates = [];
 
+    /** @var \Spatie\Sitemap\Tags\Image[] */
+    public array $images = [];
+
     public static function create(string $url): self
     {
         return new static($url);
@@ -102,6 +105,13 @@ class Url extends Tag
     public function addAlternate(string $url, string $locale = '')
     {
         $this->alternates[] = new Alternate($url, $locale);
+
+        return $this;
+    }
+
+    public function addImage(string $url, string $caption = '', string $geo_location = '', string $title = '', string $license = '')
+    {
+        $this->images[] = new Image($url, $caption, $geo_location, $title, $license);
 
         return $this;
     }
